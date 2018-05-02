@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
@@ -25,9 +26,11 @@ class InfoPage extends Component {
     if (this.props.user.userName) {
       content = (
         <div>
-          <p>
-            Info Page
-          </p>
+         <button>
+           <Link to="/form">
+            Add New Schedule Item
+           </Link>
+          </button>
         </div>
       );
     }

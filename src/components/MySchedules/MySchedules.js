@@ -5,15 +5,18 @@ import Nav from '../../components/Nav/Nav';
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import ScheduleGroupItem from '../ScheduleGroupItem/ScheduleGroupItem'
 
 
 const mapStateToProps = state => ({
   user: state.user,
+  reduxState: state.schedule
 });
 
-class UserPage extends Component {
+class MySchedules extends Component {
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
+    this.props.dispatch({type: 'FETCH_SCHEDULE_GROUP'})
   }
 
   componentDidUpdate() {
@@ -28,7 +31,11 @@ class UserPage extends Component {
   }
 
   render() {
-    let content = null;
+    let content;
+
+    let scheduleGroup = this.props.reduxState.scheduleGroupReducer.map((group) => {
+      return <ScheduleGroupItem key={group.id} group={group} />
+    })
 
     if (this.props.user.userName) {
       content = (
@@ -50,12 +57,13 @@ class UserPage extends Component {
     return (
       <div>
         <Nav />
-        { content }
+        {content}
+        {scheduleGroup}
       </div>
     );
   }
 }
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(MySchedules);
 

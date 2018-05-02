@@ -15,6 +15,7 @@ CREATE TABLE schedule_group (
 
 CREATE TABLE schedule (
 	id SERIAL PRIMARY KEY,
+	name VARCHAR (100),
 	date TIMESTAMP,
 	schedule_group_id INT REFERENCES schedule_group
 );
@@ -30,7 +31,7 @@ CREATE TABLE schedule_item (
 
 INSERT INTO schedule_group (name, date_created, user_id) VALUES ('hadar', '4/30/2018', 1);
 
-INSERT INTO schedule (date, schedule_group_id) VALUES ('5/15/2018', 2);
+INSERT INTO schedule (name, date, schedule_group_id) VALUES ('React-Redux', '5/15/2018', 2);
 
 INSERT INTO schedule_item(name, type, github, description, schedule_id) 
 VALUES ('Redux Lecture', 'lecture', 'N/A', 'fun stuff', 1), 

@@ -9,14 +9,15 @@ import {
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
+import MySchedules from './components/MySchedules/MySchedules';
+import CreateSchedule from './components/CreateSchedule/CreateSchedule';
+import ScheduleItemForm from './components/ScheduleItemForm/ScheduleItemForm';
 
 import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Project Base" />
+    <Header title="Schedule Builder" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -29,12 +30,16 @@ const App = () => (
           component={RegisterPage}
         />
         <Route
-          path="/user"
-          component={UserPage}
+          path="/schedules"
+          component={MySchedules}
         />
         <Route
-          path="/info"
-          component={InfoPage}
+          path="/create"
+          component={CreateSchedule}
+        />
+           <Route
+          path="/form"
+          component={ScheduleItemForm}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
