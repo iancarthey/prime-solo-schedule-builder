@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
 
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
   user: state.user,
+  items: state.schedule.scheduleItemReducer
 });
 
 // fake data generator
-const getItems = count =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
-    content: `item ${k}`,
-  }));
+// const getItems = count =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `item-${k}`,
+//     content: `item ${k}`,
+//   }));
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -51,7 +54,7 @@ class CreateSchedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: getItems(10),
+      scheduleItems: '' 
     };
   }
 
@@ -62,14 +65,12 @@ class CreateSchedule extends Component {
     }
 
     const items = reorder(
-      this.state.items,
+      this.props.items,
       result.source.index,
       result.destination.index
     );
 
-    this.setState({
-      items,
-    });
+    this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: items})
   }
 
   componentDidMount() {
@@ -88,6 +89,11 @@ class CreateSchedule extends Component {
     if (this.props.user.userName) {
       content = (
         <div>
+          <Link to="/form">
+          <Button color="primary" variant="raised">
+              Add New Schedule Item
+          </Button>
+          </ Link>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -95,8 +101,8 @@ class CreateSchedule extends Component {
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
             >
-              {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
+              {this.props.items.map((item, index) => (
+                <Draggable key={item.id} draggableId={item.name} index={index}>
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
@@ -107,7 +113,7 @@ class CreateSchedule extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      {item.content}
+                      {item.name}
                     </div>
                   )}
                 </Draggable>
@@ -117,11 +123,6 @@ class CreateSchedule extends Component {
           )}
         </Droppable>
       </DragDropContext>
-      <button>
-        <Link to="/form">
-          Add New Schedule Item
-        </Link>
-      </button>
       </div>
       );
     }
