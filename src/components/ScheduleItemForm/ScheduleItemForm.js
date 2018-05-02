@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect  } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 
-const mapStateToProps = reduxState =>({
-    reduxState
+const mapStateToProps = state =>({
+    user: state.user
 });
 
 class ScheduleItemForm extends Component {
@@ -35,14 +35,8 @@ class ScheduleItemForm extends Component {
       //FUNCTION FOR SENDING DISPATCH TO ADD SCHEDULE ITEM
       addNewScheduleItem = event => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_SCHEDULE_ITEM', payload: this.state.newScheduleItem })
+        this.props.dispatch({ type: 'SET_SCHEDULE_ITEM', payload: this.state.newScheduleItem })
     }
-
-    componentDidUpdate() {
-        if (!this.props.state.user.isLoading && this.props.state.user.userName === null) {
-          this.props.history.push('home');
-        }
-      }
 
       render(){
         return(

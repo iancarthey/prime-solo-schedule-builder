@@ -14,7 +14,7 @@ const scheduleGroupReducer = (state = [], action) => {
 const scheduleItemReducer = (state = [], action) => {
     switch(action.type){
         case 'SET_SCHEDULE_ITEM':
-            return action.payload;
+            return [ ...state, action.payload];
         default: 
             return state;
     }
