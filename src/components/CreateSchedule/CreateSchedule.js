@@ -31,6 +31,7 @@ const reorder = (list, startIndex, endIndex) => {
 
 const grid = 8;
 
+//styling for each schedule item
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* scheduleSaga(){
     yield takeEvery('FETCH_SCHEDULE_GROUP', getGroupSaga);
-    // yield takeEvery('ADD_SCHEDULE_ITEM', addScheduleItemSaga);
+    yield takeEvery('ADD_SCHEDULE', addScheduleSaga);
 }
 
 //GET request for schedule groups
@@ -22,16 +22,16 @@ function* getGroupSaga(action){
     }
 }
 
-//POST REQUEST FOR SCHEDULE ITEMS
-// function* addScheduleItemSaga(action){
-//     try{
-//         yield call(axios.post, '/api/item', action.payload)
-//         yield put({
-//             type: 'FETCH_SCHEDULE_ITEM'
-//         })
-//     } catch(error){
-//         console.log('error in ADDSCHEDULEITEM SAGA: ', error)
-//     }
-// }
+//POST REQUEST FOR SCHEDULE
+function* addScheduleSaga(action){
+    try{
+        yield call(axios.post, '/api/schedule', action.payload)
+        yield put({
+            type: 'FETCH_SCHEDULE'
+        })
+    } catch(error){
+        console.log('error in ADDSCHEDULEITEM SAGA: ', error)
+    }
+}
 
 export default scheduleSaga;
