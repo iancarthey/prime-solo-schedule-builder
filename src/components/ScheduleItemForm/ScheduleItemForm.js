@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect  } from 'react-redux';
-import Nav from '../../components/Nav/Nav';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
 
 const mapStateToProps = state =>({
     user: state.user
@@ -41,14 +42,14 @@ class ScheduleItemForm extends Component {
       render(){
         return(
            <div>
-               <Nav />
                <h3>Add a Schedule Item</h3>
                <form onSubmit={this.addNewScheduleItem}>
-                   <input type="text" onChange={this.handleChangeFor("name")} placeholder="name"></input>
-                   <input type="text" onChange={this.handleChangeFor("type")} placeholder="type"></input>
-                   <input type="text" onChange={this.handleChangeFor("url")} placeholder="url"></input>
-                   <input type="text" onChange={this.handleChangeFor("description")} placeholder="description"></input>
-                   <input type="submit" value="Add Schedule Item"></input>
+                   <TextField type="text" onChange={this.handleChangeFor("name")} label="name" />
+                   <TextField type="text" onChange={this.handleChangeFor("type")} label="type" />
+                   <TextField type="text" onChange={this.handleChangeFor("url")} label="url" />
+                   <TextField type="text" onChange={this.handleChangeFor("description")} label="description" />
+                   <br />
+                   <Button type="submit" value="Add Schedule Item" color="primary" variant="raised">Add Item</Button>
                </form>
            </div> 
         )

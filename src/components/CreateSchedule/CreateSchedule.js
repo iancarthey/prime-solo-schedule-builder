@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { withStyles } from 'material-ui/styles';
+// import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import AddIcon from '@material-ui/icons/Add';
+import TextField from 'material-ui/TextField';
 
 import Nav from '../../components/Nav/Nav';
+import ScheduleItemForm from '../ScheduleItemForm/ScheduleItemForm';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
@@ -50,13 +53,30 @@ const getListStyle = isDraggingOver => ({
   width: 250,
 });
 
+
 class CreateSchedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      scheduleItems: '' 
+      newSchedule: {
+        name: '',
+        date: ''
+      },
+      showScheduleItem: false
     };
   }
+
+      //FUNCTION FOR UPDATING STATE WITH INPUT FIELDS
+      handleChangeFor = (propertyName) => {
+        return (event) => {
+          this.setState({
+            newSchedule: {
+            ...this.state.newSchedule,
+            [propertyName]: event.target.value
+            }
+          })
+        }
+      }
 
   onDragEnd = (result) => {
     // dropped outside the list
@@ -73,6 +93,12 @@ class CreateSchedule extends Component {
     this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: items})
   }
 
+  showForm = () => {
+    this.setState({
+      showScheduleItem: !this.state.showScheduleItem
+    })
+  }
+
   componentDidMount() {
     this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
   }
@@ -85,15 +111,21 @@ class CreateSchedule extends Component {
 
   render() {
     let content = null;
+    let scheduleForm;
+
+    if (this.state.showScheduleItem) {
+      scheduleForm = <ScheduleItemForm />
+    } else {
+      scheduleForm = (           
+        <Button color="primary" variant="raised" onClick={() => {this.showForm()}}>
+          Add Schedule Item
+          <AddIcon />
+        </ Button>
+      )}
 
     if (this.props.user.userName) {
       content = (
         <div>
-          <Link to="/form">
-          <Button color="primary" variant="raised">
-              Add New Schedule Item
-          </Button>
-          </ Link>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -130,7 +162,23 @@ class CreateSchedule extends Component {
     return (
       <div>
         <Nav />
+        <TextField id="With-Placeholder" label="Schedule Name" onChange={this.handleChangeFor("name")}/>
+          <br />
+          <br />
+          <TextField
+            id="date"
+            label="Schedule Date"
+            type="date"
+            onChange={this.handleChangeFor("date")}
+            InputLabelProps={{
+              shrink: true,
+            }}
+        />
+        <br />
+        <br />
+        { scheduleForm }
         { content }
+        <Button variant="raised" color="primary">Finish</ Button>
       </div>
     );
   }
