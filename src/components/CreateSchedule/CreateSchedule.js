@@ -1,12 +1,16 @@
+//library imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import moment from 'moment';
+
+//Material UI imports
 // import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from 'material-ui/TextField';
 
+//Other views imports
 import Nav from '../../components/Nav/Nav';
 import ScheduleItemForm from '../ScheduleItemForm/ScheduleItemForm';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
@@ -15,13 +19,6 @@ const mapStateToProps = state => ({
   user: state.user,
   items: state.schedule.scheduleItemReducer
 });
-
-// fake data generator
-// const getItems = count =>
-//   Array.from({ length: count }, (v, k) => k).map(k => ({
-//     id: `item-${k}`,
-//     content: `item ${k}`,
-//   }));
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -99,6 +96,16 @@ class CreateSchedule extends Component {
     })
   }
 
+  addSchedule = () => {
+    this.props.dispatch({
+      type: 'ADD_SCHEDULE',
+      payload: {
+        newSchedule: this.state,
+        newScheduleItems: this.props.items
+      }
+    })
+  }
+
   componentDidMount() {
     this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
   }
@@ -112,12 +119,13 @@ class CreateSchedule extends Component {
   render() {
     let content = null;
     let scheduleForm;
+    let now = moment().format('YYYY-MM-DD');
 
     if (this.state.showScheduleItem) {
       scheduleForm = <ScheduleItemForm />
     } else {
       scheduleForm = (           
-        <Button color="primary" variant="raised" onClick={() => {this.showForm()}}>
+        <Button color="primary" variant="raised" onClick={() => this.showForm()}>
           Add Schedule Item
           <AddIcon />
         </ Button>
@@ -166,10 +174,10 @@ class CreateSchedule extends Component {
           <br />
           <br />
           <TextField
-            id="date"
             label="Schedule Date"
             type="date"
             onChange={this.handleChangeFor("date")}
+            defaultValue={now}
             InputLabelProps={{
               shrink: true,
             }}
@@ -178,7 +186,9 @@ class CreateSchedule extends Component {
         <br />
         { scheduleForm }
         { content }
-        <Button variant="raised" color="primary">Finish</ Button>
+        <Button variant="raised" color="primary" onClick={() => this.addSchedule()}>
+          Finish
+        </ Button>
       </div>
     );
   }
