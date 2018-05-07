@@ -19,7 +19,15 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-
+    group = req.body;
+    queryText = 'INSERT INTO schedule_group (name, active, user_id) VALUES ($1, $2, $3);';
+    values = [group.newGroup.name, group.newGroup.active, group.user.id];
+    pool.query(queryText, values).then((result) => {
+        res.sendStatus(201);
+    }).catch((err) => {
+        console.log('ERROR IN POST scheduleGroup.router: ', err);
+        res.sendStatus(500);
+    }) 
 });
 
 module.exports = router;

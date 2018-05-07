@@ -4,6 +4,8 @@ import axios from 'axios';
 function* scheduleSaga(){
     yield takeEvery('FETCH_SCHEDULE_GROUP', getGroupSaga);
     yield takeEvery('ADD_SCHEDULE', addScheduleSaga);
+    yield takeEvery('ADD_SCHEDULE_GROUP', addScheduleGroupSaga);
+    yield takeEvery('FETCH_SCHEDULE', getScheduleSaga);
 }
 
 //GET request for schedule groups
@@ -30,7 +32,35 @@ function* addScheduleSaga(action){
         //     type: 'FETCH_SCHEDULE'
         // })
     } catch(error){
-        console.log('error in ADDSCHEDULEITEM SAGA: ', error)
+        console.log('error in ADDSCHEDULEITEM SAGA: ', error);
+    }
+}
+
+//POST REQUEST FOR SCHEDULE GROUPS
+function* addScheduleGroupSaga(action){
+    try{
+        yield call(axios.post, '/api/group', action.payload)
+        yield put({
+            type: 'FETCH_SCHEDULE_GROUP'
+        })
+    } catch(error){
+        console.log('error in ADDSCHEDULEGROUP SAGA: ', error);
+    }
+}
+
+//GET REQUEST FOR SCHEDULES
+function* getScheduleSaga(action){
+    try{
+        //create variable for schedule get request
+        const scheduleResponse = yield call(axios.get, '/api/schedule');
+
+        //dispatch new action to set reducer
+        yield put({
+            type: 'SET_SCHEDULE',
+            payload: scheduleResponse.data
+        })
+    } catch(error){
+        console.log('error in GETSCHEDULE SAGA: ', error);
     }
 }
 

@@ -60,13 +60,6 @@ class CreateSchedule extends Component {
     this.setState({ openScheduleItemForm: false });
   };
 
-
-  showForm = () => {
-    this.setState({
-      showScheduleItem: !this.state.showScheduleItem
-    })
-  }
-
   componentDidMount() {
     this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
     this.props.dispatch({type: 'FETCH_SCHEDULE_GROUP'})
