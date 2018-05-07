@@ -1,95 +1,65 @@
 //library imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import moment from 'moment';
 
 //Material UI imports
-// import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import AddIcon from '@material-ui/icons/Add';
-import TextField from 'material-ui/TextField';
+// import AddIcon from '@material-ui/icons/Add';
+import Modal from 'material-ui/Modal';
+// import Typography from 'material-ui/Typography';
 
 //Other views imports
 import Nav from '../../components/Nav/Nav';
 import ScheduleItemForm from '../ScheduleItemForm/ScheduleItemForm';
+import DragAndDrop from '../DragAndDrop/DragAndDrop';
+import ScheduleForm from '../ScheduleForm/ScheduleForm';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 
-const mapStateToProps = state => ({
-  user: state.user,
-  items: state.schedule.scheduleItemReducer
+const mapStateToProps = reduxState => ({
+  user: reduxState.user,
+  scheduleGroup: reduxState.schedule.scheduleGroupReducer
 });
 
-// a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
+//styling for modal
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
 
-  return result;
-};
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
-const grid = 8;
-
-//styling for each schedule item
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
-
-  // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
-
-  // styles we need to apply on draggables
-  ...draggableStyle,
+const styles = theme => ({
+  //for modal
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
 });
-
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: grid,
-  width: 250,
-});
-
 
 class CreateSchedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newSchedule: {
-        name: '',
-        date: ''
-      },
-      showScheduleItem: false
+      openScheduleItemForm: false
     };
   }
 
-      //FUNCTION FOR UPDATING STATE WITH INPUT FIELDS
-      handleChangeFor = (propertyName) => {
-        return (event) => {
-          this.setState({
-            newSchedule: {
-            ...this.state.newSchedule,
-            [propertyName]: event.target.value
-            }
-          })
-        }
-      }
+  handleOpen = () => {
+    this.setState({ openScheduleItemForm: true });
+  };
 
-  onDragEnd = (result) => {
-    // dropped outside the list
-    if (!result.destination) {
-      return;
-    }
+  handleClose = () => {
+    this.setState({ openScheduleItemForm: false });
+  };
 
-    const items = reorder(
-      this.props.items,
-      result.source.index,
-      result.destination.index
-    );
-
-    this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: items})
-  }
 
   showForm = () => {
     this.setState({
@@ -97,18 +67,9 @@ class CreateSchedule extends Component {
     })
   }
 
-  addSchedule = () => {
-    this.props.dispatch({
-      type: 'ADD_SCHEDULE',
-      payload: {
-        newSchedule: this.state,
-        newScheduleItems: this.props.items
-      }
-    })
-  }
-
   componentDidMount() {
     this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
+    this.props.dispatch({type: 'FETCH_SCHEDULE_GROUP'})
   }
 
   componentDidUpdate() {
@@ -119,81 +80,44 @@ class CreateSchedule extends Component {
 
   render() {
     let content = null;
-    let scheduleForm;
-    let now = moment().format('YYYY-MM-DD');
-
-    if (this.state.showScheduleItem) {
-      scheduleForm = <ScheduleItemForm />
-    } else {
-      scheduleForm = (           
-        <Button color="primary" variant="raised" onClick={() => this.showForm()}>
-          Add Schedule Item
-          <AddIcon />
-        </ Button>
-      )}
+    const { classes } = this.props;
+    let scheduleItemForm = (
+      <div>
+      <Button onClick={this.handleOpen} color="primary" variant="raised" size="small">Add Schedule Item</Button>
+        <Modal
+          aria-labelledby="scheduleItemModal"
+          aria-describedby="ScheduleItemForm"
+          open={this.state.openScheduleItemForm}
+          onClose={this.handleClose}
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+              <ScheduleItemForm />
+          </div>
+        </Modal>
+      </ div>
+    )
 
     if (this.props.user.userName) {
       content = (
         <div>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            >
-              {this.props.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.name} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      {item.name}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-      </div>
+          <ScheduleForm />
+          <hr />
+          {scheduleItemForm}
+          <DragAndDrop />
+        </div>
       );
     }
 
     return (
       <div>
         <Nav />
-        <TextField id="With-Placeholder" label="Schedule Name" onChange={this.handleChangeFor("name")}/>
-          <br />
-          <br />
-          <TextField
-            label="Schedule Date"
-            type="date"
-            onChange={this.handleChangeFor("date")}
-            defaultValue={now}
-            InputLabelProps={{
-              shrink: true,
-            }}
-        />
-        <br />
-        <br />
-        { scheduleForm }
         { content }
-        <Button variant="raised" color="primary" onClick={() => this.addSchedule()}>
-          Finish
-        </ Button>
       </div>
     );
   }
 }
 
+const createScheduleStyle = withStyles(styles)(CreateSchedule);
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(CreateSchedule);
+export default connect(mapStateToProps)(createScheduleStyle);

@@ -17,7 +17,7 @@ import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Schedule Builder" />
+    <Header title="Schedule Stuff" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />

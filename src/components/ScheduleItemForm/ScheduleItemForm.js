@@ -45,8 +45,11 @@ class ScheduleItemForm extends Component {
                <h3>Add a Schedule Item</h3>
                <form onSubmit={this.addNewScheduleItem}>
                    <TextField type="text" onChange={this.handleChangeFor("name")} label="name" />
+                   <br />
                    <TextField type="text" onChange={this.handleChangeFor("type")} label="type" />
+                   <br />
                    <TextField type="text" onChange={this.handleChangeFor("url")} label="url" />
+                   <br />
                    <TextField type="text" onChange={this.handleChangeFor("description")} label="description" />
                    <br />
                    <Button type="submit" value="Add Schedule Item" color="primary" variant="raised">Add Item</Button>

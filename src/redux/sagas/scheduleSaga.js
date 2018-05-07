@@ -26,9 +26,9 @@ function* getGroupSaga(action){
 function* addScheduleSaga(action){
     try{
         yield call(axios.post, '/api/schedule', action.payload)
-        yield put({
-            type: 'FETCH_SCHEDULE'
-        })
+        // yield put({
+        //     type: 'FETCH_SCHEDULE'
+        // })
     } catch(error){
         console.log('error in ADDSCHEDULEITEM SAGA: ', error)
     }

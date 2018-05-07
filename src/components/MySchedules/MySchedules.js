@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from 'material-ui/Button';
+import Modal from 'material-ui/Modal';
 
 import Nav from '../../components/Nav/Nav';
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
-import { triggerLogout } from '../../redux/actions/loginActions';
 import ScheduleGroupItem from '../ScheduleGroupItem/ScheduleGroupItem'
 
-
+//connect redux state
 const mapStateToProps = state => ({
   user: state.user,
-  reduxState: state.schedule
+  scheduleGroup: state.schedule
+});
+
+//styling for modal
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const styles = theme => ({
+  //for modal
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
 });
 
 class MySchedules extends Component {
@@ -25,15 +49,25 @@ class MySchedules extends Component {
     }
   }
 
-  logout = () => {
-    this.props.dispatch(triggerLogout());
-    // this.props.history.push('home');
-  }
-
   render() {
     let content;
+    let scheduleGroupForm = (
+      <div>
+      <Button onClick={this.handleOpen} color="primary" variant="raised" size="small">Add Schedule Group</Button>
+        <Modal
+          aria-labelledby="scheduleGroupModal"
+          aria-describedby="ScheduleGroupForm"
+          open={this.state.openScheduleItemForm}
+          onClose={this.handleClose}
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+              <ScheduleItemForm />
+          </div>
+        </Modal>
+      </ div>
+    );
 
-    let scheduleGroup = this.props.reduxState.scheduleGroupReducer.map((group) => {
+    let scheduleGroup = this.props.scheduleGroup.scheduleGroupReducer.map((group) => {
       return <ScheduleGroupItem key={group.id} group={group} />
     })
 
@@ -45,11 +79,8 @@ class MySchedules extends Component {
           >
             Welcome, { this.props.user.userName }!
           </h1>
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
+          
+          {scheduleGroup}
         </div>
       );
     }
@@ -58,7 +89,6 @@ class MySchedules extends Component {
       <div>
         <Nav />
         {content}
-        {scheduleGroup}
       </div>
     );
   }
