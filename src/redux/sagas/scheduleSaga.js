@@ -6,6 +6,7 @@ function* scheduleSaga(){
     yield takeEvery('ADD_SCHEDULE', addScheduleSaga);
     yield takeEvery('ADD_SCHEDULE_GROUP', addScheduleGroupSaga);
     yield takeEvery('FETCH_SCHEDULE', getScheduleSaga);
+    yield takeEvery('DELETE_SCHEDULE', deleteScheduleSaga);
 }
 
 //GET request for schedule groups
@@ -28,9 +29,9 @@ function* getGroupSaga(action){
 function* addScheduleSaga(action){
     try{
         yield call(axios.post, '/api/schedule', action.payload)
-        // yield put({
-        //     type: 'FETCH_SCHEDULE'
-        // })
+        yield put({
+            type: 'FETCH_SCHEDULE'
+        })
     } catch(error){
         console.log('error in ADDSCHEDULEITEM SAGA: ', error);
     }
@@ -61,6 +62,22 @@ function* getScheduleSaga(action){
         })
     } catch(error){
         console.log('error in GETSCHEDULE SAGA: ', error);
+    }
+}
+
+//DELETE REQUEST FOR SCHEDULES
+function* deleteScheduleSaga(action){
+    try{
+        //dispatch axios request to delete schedule from database
+        yield call(axios.delete, `/api/schedule/${action.payload.id}`)
+
+        //dispatch new action to get current schedules
+        yield put({
+            type: 'FETCH_SCHEDULE',
+        })
+
+    } catch (error){
+        console.log('error in DELETESCHEDULE SAGA: ', error);
     }
 }
 

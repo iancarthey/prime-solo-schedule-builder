@@ -61,4 +61,14 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+    const scheduleId = req.params.id
+    let queryText = 'DELETE FROM schedule WHERE "id" = $1;';
+    pool.query(queryText, [scheduleId]).then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('ERROR IN DELETE schedule.router: ', error);
+    })
+})
+
 module.exports = router;

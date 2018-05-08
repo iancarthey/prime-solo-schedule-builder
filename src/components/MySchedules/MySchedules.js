@@ -11,7 +11,7 @@ import Modal from 'material-ui/Modal';
 //component imports
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
-import ScheduleGroupItem from '../ScheduleGroupItem/ScheduleGroupItem';
+import ScheduleGroupExpansion from '../ScheduleGroupExpansion/ScheduleGroupExpansion';
 import ScheduleGroupForm from '../ScheduleGroupForm/ScheduleGroupForm';
 
 //connect redux state
@@ -77,7 +77,7 @@ class MySchedules extends Component {
     let content;
     const { classes } = this.props;
     let scheduleGroup = this.props.scheduleGroup.scheduleGroupReducer.map((group) => {
-      return <ScheduleGroupItem key={group.id} group={group} />
+      return <ScheduleGroupExpansion key={group.id} group={group} />
     })
 
     let scheduleGroupForm = (

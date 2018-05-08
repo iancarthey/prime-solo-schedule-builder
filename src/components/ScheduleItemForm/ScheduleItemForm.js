@@ -52,7 +52,9 @@ class ScheduleItemForm extends Component {
                    <br />
                    <TextField type="text" onChange={this.handleChangeFor("description")} label="description" />
                    <br />
-                   <Button type="submit" value="Add Schedule Item" color="primary" variant="raised">Add Item</Button>
+                   <Button type="submit" value="Add Schedule Item" color="primary" variant="raised" className="scheduleItemButton">
+                      Add Item
+                   </Button>
                </form>
            </div> 
         )

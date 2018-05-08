@@ -10,6 +10,7 @@ import TextField from 'material-ui/TextField';
 import { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
+import { FormHelperText } from 'material-ui/Form';
 
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
@@ -85,7 +86,8 @@ const mapStateToProps = reduxState => ({
               shrink: true,
             }}
           />
-          <InputLabel>Group </InputLabel>
+          <br />
+          <InputLabel>Group: </InputLabel>
           <Select
             value={this.state.newSchedule.group}
             onChange={this.handleChangeFor("group")}
@@ -99,6 +101,7 @@ const mapStateToProps = reduxState => ({
             </MenuItem>
             {scheduleGroupItem}
           </Select>
+          <FormHelperText>Please Select Group</FormHelperText>
           <br />
           <Button variant="raised" color="primary" onClick={() => this.addSchedule()}>
             Finalize Schedule
