@@ -37,6 +37,7 @@ const scheduleReducer = (state = [], action) => {
 const viewScheduleReducer = (state = [], action) => {
     switch(action.type){
         case 'SET_VIEW_SCHEDULE':
+            console.log(action.payload);
             return action.payload;
         default: 
             return state;

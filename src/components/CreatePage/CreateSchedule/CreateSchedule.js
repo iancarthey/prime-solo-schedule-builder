@@ -10,11 +10,11 @@ import Modal from 'material-ui/Modal';
 // import Typography from 'material-ui/Typography';
 
 //Other views imports
-import Nav from '../../components/Nav/Nav';
+import Nav from '../../../components/Nav/Nav';
 import ScheduleItemForm from '../ScheduleItemForm/ScheduleItemForm';
 import DragAndDrop from '../DragAndDrop/DragAndDrop';
 import ScheduleForm from '../ScheduleForm/ScheduleForm';
-import { USER_ACTIONS } from '../../redux/actions/userActions';
+import { USER_ACTIONS } from '../../../redux/actions/userActions';
 
 const mapStateToProps = reduxState => ({
   user: reduxState.user,

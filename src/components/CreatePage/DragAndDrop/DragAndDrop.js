@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { USER_ACTIONS } from '../../redux/actions/userActions';
+import { USER_ACTIONS } from '../../../redux/actions/userActions';
 
 //connect redux state 
 const mapStateToProps = state => ({

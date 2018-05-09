@@ -51,7 +51,7 @@ class ScheduleGroupItem extends Component {
     handleOpen = (schedule) => {
         this.setState({ openEditSchedule: true });
         this.props.dispatch({
-            type: 'GET_EDIT_SCHEDULE',
+            type: 'VIEW_SCHEDULE',
             payload: schedule
         })
     };
@@ -73,11 +73,13 @@ class ScheduleGroupItem extends Component {
         //format Date to post to Dom
         let scheduleDate = this.props.schedule.date
         let viewDate = moment(scheduleDate).format('L');
-        console.log(viewDate);
+        
+        //declare modal
+        let editModal;
+        const { classes } = this.props;
 
         //set up edit modal
         editModal = (
-            <div>
                 <Modal
                     aria-labelledby="scheduleGroupModal"
                     aria-describedby="ScheduleGroupForm"
@@ -88,7 +90,6 @@ class ScheduleGroupItem extends Component {
                     <p>Ian</p>
                 </div>
                 </Modal>
-            </div>
         )
 
         return(
@@ -104,4 +105,6 @@ class ScheduleGroupItem extends Component {
     }
 }
 
-export default connect(mapStateToProps)(ScheduleGroupItem);
+let scheduleGroupItemStyle = withStyles(styles)(ScheduleGroupItem)
+
+export default connect(mapStateToProps)(scheduleGroupItemStyle);

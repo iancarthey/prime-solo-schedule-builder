@@ -13,7 +13,7 @@ import Select from 'material-ui/Select';
 import { FormHelperText } from 'material-ui/Form';
 
 
-import { USER_ACTIONS } from '../../redux/actions/userActions';
+import { USER_ACTIONS } from '../../../redux/actions/userActions';
 
 const mapStateToProps = reduxState => ({
     user: reduxState.user,

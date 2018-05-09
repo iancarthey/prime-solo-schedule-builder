@@ -9,8 +9,8 @@ import Modal from 'material-ui/Modal';
 
 
 //component imports
-import Nav from '../../components/Nav/Nav';
-import { USER_ACTIONS } from '../../redux/actions/userActions';
+import Nav from '../../../components/Nav/Nav';
+import { USER_ACTIONS } from '../../../redux/actions/userActions';
 import ScheduleGroupExpansion from '../ScheduleGroupExpansion/ScheduleGroupExpansion';
 import ScheduleGroupForm from '../ScheduleGroupForm/ScheduleGroupForm';
 

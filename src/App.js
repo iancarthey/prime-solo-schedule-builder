@@ -9,9 +9,9 @@ import {
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import MySchedules from './components/MySchedules/MySchedules';
-import CreateSchedule from './components/CreateSchedule/CreateSchedule';
-import ScheduleItemForm from './components/ScheduleItemForm/ScheduleItemForm';
+import MySchedules from './components/ManageSchedulePage/MySchedules/MySchedules';
+import CreateSchedule from './components/CreatePage/CreateSchedule/CreateSchedule';
+
 
 import './styles/main.css';
 
@@ -36,10 +36,6 @@ const App = () => (
         <Route
           path="/create"
           component={CreateSchedule}
-        />
-           <Route
-          path="/form"
-          component={ScheduleItemForm}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
