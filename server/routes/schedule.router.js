@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
     const schedule = req.body;
+    let index = 0;
 
     (async () => {
         const client = await pool.connect();
@@ -37,12 +38,15 @@ router.post('/', (req, res) => {
 
             //For loop to go through each schedule item
             for(let scheduleItem of schedule.newScheduleItems){
+                //define order_id
+                let orderId = index += 1;
+                console.log(orderId);
                 //query for each item
                 console.log(scheduleItem);
-                queryText = `INSERT INTO schedule_item (name, type, github, description, schedule_id) 
-                            VALUES ($1, $2, $3, $4, $5);`;
+                queryText = `INSERT INTO schedule_item (name, type, github, description, order_id, schedule_id) 
+                            VALUES ($1, $2, $3, $4, $5, $6);`;
                 //values for each item
-                values = [scheduleItem.name, scheduleItem.type, scheduleItem.url, scheduleItem.description, scheduleId];
+                values = [scheduleItem.name, scheduleItem.type, scheduleItem.url, scheduleItem.description, orderId, scheduleId];
                 const result = await client.query(queryText, values); 
             }
             await client.query('COMMIT');

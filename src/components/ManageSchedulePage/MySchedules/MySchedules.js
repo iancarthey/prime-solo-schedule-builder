@@ -80,9 +80,13 @@ class MySchedules extends Component {
       return <ScheduleGroupExpansion key={group.id} group={group} />
     })
 
-    let scheduleGroupForm = (
+    let scheduleGroupModal = (
       <div>
-      <Button onClick={this.handleOpen} color="primary" variant="raised" size="small">Add Schedule Group</Button>
+        <Button className="addGroupButton" onClick={this.handleOpen} color="primary" variant="raised" size="small">
+          Add Schedule Group
+        </Button>
+        <h3>Manage Groups and Schedules</h3>
+        <hr />
         <Modal
           aria-labelledby="scheduleGroupModal"
           aria-describedby="ScheduleGroupForm"
@@ -90,7 +94,7 @@ class MySchedules extends Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-              <ScheduleGroupForm />
+              <ScheduleGroupForm handleClose={this.handleClose}/>
           </div>
         </Modal>
       </ div>
@@ -104,7 +108,7 @@ class MySchedules extends Component {
           >
             Welcome, { this.props.user.userName }!
           </h1>
-          {scheduleGroupForm}
+          {scheduleGroupModal}
           {scheduleGroup}
         </div>
       );

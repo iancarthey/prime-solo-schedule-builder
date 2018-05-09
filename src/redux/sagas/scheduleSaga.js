@@ -7,6 +7,7 @@ function* scheduleSaga(){
     yield takeEvery('ADD_SCHEDULE_GROUP', addScheduleGroupSaga);
     yield takeEvery('FETCH_SCHEDULE', getScheduleSaga);
     yield takeEvery('DELETE_SCHEDULE', deleteScheduleSaga);
+    yield takeEvery('VIEW_SCHEDULE', viewScheduleSaga);
 }
 
 //GET request for schedule groups
@@ -78,6 +79,15 @@ function* deleteScheduleSaga(action){
 
     } catch (error){
         console.log('error in DELETESCHEDULE SAGA: ', error);
+    }
+}
+
+//FUNCTION TO GET DESIRED SCHEDULE
+function* viewScheduleSaga(action){
+    try{
+        //dispatch axios to get desired schedule to edit
+    } catch (error){
+        console.log('error in VIEW SCHEDULE SAGA: ', error)
     }
 }
 
