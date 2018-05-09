@@ -33,8 +33,19 @@ const scheduleReducer = (state = [], action) => {
     }
 }
 
+//reducer for viewing/edit schedule
+const viewScheduleReducer = (state = [], action) => {
+    switch(action.type){
+        case 'SET_VIEW_SCHEDULE':
+            return action.payload;
+        default: 
+            return state;
+    }
+}
+
 export default combineReducers({
     scheduleGroupReducer,
     scheduleItemReducer,
-    scheduleReducer
+    scheduleReducer,
+    viewScheduleReducer
 });

@@ -85,7 +85,14 @@ function* deleteScheduleSaga(action){
 //FUNCTION TO GET DESIRED SCHEDULE
 function* viewScheduleSaga(action){
     try{
-        //dispatch axios to get desired schedule to edit
+        //dispatch axios to get desired schedule to view/edit
+        const viewResponse = yield call(axios.get, `/api/item/?id=${action.payload.id}`)
+
+        //dispatch new action to set reducer
+        yield put({
+            type: 'SET_VIEW_SCHEDULE',
+            payload: viewResponse.data
+        })
     } catch (error){
         console.log('error in VIEW SCHEDULE SAGA: ', error)
     }
