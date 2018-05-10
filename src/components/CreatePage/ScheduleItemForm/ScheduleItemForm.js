@@ -13,7 +13,6 @@ class ScheduleItemForm extends Component {
         this.state = {
             newScheduleItem: {
                 name: '',
-                type: '',
                 url: '',
                 description: '',
                 schedule_id: ''
@@ -37,6 +36,14 @@ class ScheduleItemForm extends Component {
       addNewScheduleItem = event => {
         event.preventDefault();
         this.props.dispatch({ type: 'SET_SCHEDULE_ITEM', payload: this.state.newScheduleItem })
+        this.setState({
+            newScheduleItem: {
+                name: '',
+                url: '',
+                description: '',
+                schedule_id: ''
+            }
+        })
     }
 
       render(){
@@ -44,13 +51,11 @@ class ScheduleItemForm extends Component {
            <div>
                <h3>Add a Schedule Item</h3>
                <form onSubmit={this.addNewScheduleItem}>
-                   <TextField type="text" onChange={this.handleChangeFor("name")} label="name" />
+                   <TextField value={this.state.name} type="text" onChange={this.handleChangeFor("name")} label="name" />
                    <br />
-                   <TextField type="text" onChange={this.handleChangeFor("type")} label="type" />
+                   <TextField value={this.state.url} type="text" onChange={this.handleChangeFor("url")} label="url" />
                    <br />
-                   <TextField type="text" onChange={this.handleChangeFor("url")} label="url" />
-                   <br />
-                   <TextField type="text" onChange={this.handleChangeFor("description")} label="description" />
+                   <TextField value={this.state.description} type="text" onChange={this.handleChangeFor("description")} label="description" />
                    <br />
                    <Button type="submit" value="Add Schedule Item" color="primary" variant="raised" className="scheduleItemButton">
                       Add Item

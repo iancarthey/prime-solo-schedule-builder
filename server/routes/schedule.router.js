@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
         try{
             await client.query('BEGIN');
             //creates new schedule that can be referenced in later query
-            let queryText = `INSERT INTO schedule (name, date, schedule_group_id) VALUES ($1, $2, $3) 
+            let queryText = `INSERT INTO schedule (schedule_name, date, schedule_group_id) VALUES ($1, $2, $3) 
                              RETURNING "id";`;
             //values to be inserted in query
             values = [schedule.newScheduleInfo.newSchedule.name, schedule.newScheduleInfo.newSchedule.date, schedule.newScheduleInfo.newSchedule.group];
@@ -43,10 +43,10 @@ router.post('/', (req, res) => {
                 console.log(orderId);
                 //query for each item
                 console.log(scheduleItem);
-                queryText = `INSERT INTO schedule_item (name, type, github, description, order_id, schedule_id) 
-                            VALUES ($1, $2, $3, $4, $5, $6);`;
+                queryText = `INSERT INTO schedule_item (name, github, description, order_id, schedule_id) 
+                            VALUES ($1, $2, $3, $4, $5);`;
                 //values for each item
-                values = [scheduleItem.name, scheduleItem.type, scheduleItem.url, scheduleItem.description, orderId, scheduleId];
+                values = [scheduleItem.name, scheduleItem.url, scheduleItem.description, orderId, scheduleId];
                 const result = await client.query(queryText, values); 
             }
             await client.query('COMMIT');

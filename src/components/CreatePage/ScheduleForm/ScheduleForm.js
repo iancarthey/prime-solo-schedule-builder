@@ -10,7 +10,6 @@ import TextField from 'material-ui/TextField';
 import { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
-import { FormHelperText } from 'material-ui/Form';
 
 
 import { USER_ACTIONS } from '../../../redux/actions/userActions';
@@ -53,6 +52,7 @@ const mapStateToProps = reduxState => ({
         newScheduleItems: this.props.items
       }
     })
+    // this.props.history.push('home');
   }
 
   componentDidMount() {
@@ -73,7 +73,7 @@ const mapStateToProps = reduxState => ({
       })
 
     return(
-        <div>
+        <div className = "scheduleForm">
         <TextField id="With-Placeholder" label="Schedule Name" onChange={this.handleChangeFor("name")}/>
           <br />
           <br />
@@ -101,7 +101,7 @@ const mapStateToProps = reduxState => ({
             </MenuItem>
             {scheduleGroupItem}
           </Select>
-          <FormHelperText>Please Select Group</FormHelperText>
+          <br />
           <br />
           <Button variant="raised" color="primary" onClick={() => this.addSchedule()}>
             Finalize Schedule

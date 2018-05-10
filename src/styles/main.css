@@ -1,5 +1,8 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: grey;
+    height: 100%;
+    width: 100%;
 }
 
 .instructions h1 {
@@ -8,7 +11,7 @@ body {
 }
 
 .instructions {
-    background-color: #00acb0;
+    background-color: black;
     padding: 5px;
     color: #ece7e7;
 }
@@ -48,7 +51,7 @@ input[type="submit"] {
 }
 
 .navbar {
-  background-color: #00acb0;
+  background-color: black;
   width: 100%;
   border-radius: 0px;
 }
@@ -91,3 +94,25 @@ li a:hover {
     float: right;
 }
 
+.topLevel {
+    background-color: darkgray;
+}
+
+.scheduleForm {
+    background-color: lightgray;
+    border: solid 2px black;
+    height: 225px;
+    width: 250px;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    float: left;
+}
+
+/* .addScheduleButton {
+    float: left;
+} */
+
+.dragNDrop {
+    float: left;
+}

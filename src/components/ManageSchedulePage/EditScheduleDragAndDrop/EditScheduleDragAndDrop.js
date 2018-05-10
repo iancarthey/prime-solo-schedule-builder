@@ -108,12 +108,7 @@ componentDidUpdate() {
                     provided.draggableProps.style
                   )}
                 >
-                 <span>{item.name}, </span> 
-                 <span>Type: {item.type}</span>
-                 <br />
-                 <span>{item.url}</span>
-                 <br /> 
-                 <span>{item.description}</span>
+                 <span>{item.name}</span> 
                 </div>
               )}
             </Draggable>

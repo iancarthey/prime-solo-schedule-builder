@@ -3,7 +3,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+//material ui
+import Modal from 'material-ui/Modal';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+
+import ScheduleItemForm from '../ScheduleItemForm/ScheduleItemForm';
+
 import { USER_ACTIONS } from '../../../redux/actions/userActions';
+
+
+//styling for modal
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const styles = theme => ({
+  //for modal
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+});
 
 //connect redux state 
 const mapStateToProps = state => ({
@@ -43,6 +74,22 @@ const getListStyle = isDraggingOver => ({
 });
 
 class DragAndDrop extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      openScheduleItemForm: false
+    };
+  }
+
+  handleOpen = () => {
+    this.setState({ openScheduleItemForm: true });
+  };
+
+  handleClose = () => {
+    this.setState({ openScheduleItemForm: false });
+  };
+
+
     onDragEnd = (result) => {
         // dropped outside the list
         if (!result.destination) {
@@ -69,8 +116,27 @@ class DragAndDrop extends Component{
       }
 
     render(){
+
+      //setup modal
+      const { classes } = this.props;
+      let scheduleItemForm = (
+        <div className="addScheduleButton">
+        <Button onClick={this.handleOpen} color="primary" variant="raised" size="small">Add Schedule Item</Button>
+          <Modal
+            aria-labelledby="scheduleItemModal"
+            aria-describedby="ScheduleItemForm"
+            open={this.state.openScheduleItemForm}
+            onClose={this.handleClose}
+          >
+            <div style={getModalStyle()} className={classes.paper}>
+                <ScheduleItemForm />
+            </div>
+          </Modal>
+        </ div>
+      )
+
         return (
-            <div>
+            <div className="dragNDrop">
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -90,8 +156,7 @@ class DragAndDrop extends Component{
                         provided.draggableProps.style
                       )}
                     >
-                     <span>{item.name}, </span> 
-                     <span>Type: {item.type}</span>
+                     <span>{item.name}</span> 
                      <br />
                      <span>{item.url}</span>
                      <br /> 
@@ -105,10 +170,13 @@ class DragAndDrop extends Component{
           )}
         </Droppable>
       </DragDropContext>
+      {scheduleItemForm}
       </div>
         )
     }
 }
 
+const dragAndDropStyle = withStyles(styles)(DragAndDrop);
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(DragAndDrop);
+export default connect(mapStateToProps)(dragAndDropStyle);

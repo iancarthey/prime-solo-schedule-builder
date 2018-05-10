@@ -42,7 +42,7 @@ class ScheduleGroupExpansion extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-            <ExpansionPanel>
+            <ExpansionPanel className="expansionGroup">
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography className={classes.heading}>{this.props.group.name}</Typography>
                 </ExpansionPanelSummary>
