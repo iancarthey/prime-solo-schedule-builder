@@ -10,6 +10,9 @@ import { Delete } from '@material-ui/icons';
 import moment from 'moment';
 import Modal from 'material-ui/Modal';
 
+//import other components
+import EditScheduleDragAndDrop from '../EditScheduleDragAndDrop/EditScheduleDragAndDrop';
+
 //connect redux state
 const mapStateToProps = state => ({
     user: state.user,
@@ -87,14 +90,14 @@ class ScheduleGroupItem extends Component {
                     onClose={this.handleClose}
                 >
                 <div style={getModalStyle()} className={classes.paper}>
-                    <p>Ian</p>
+                    <EditScheduleDragAndDrop />
                 </div>
                 </Modal>
         )
 
         return(
             <tr>
-                <td>{viewDate}</td>
+                <td>{viewDate}- </td>
                 <td className="scheduleGroupExpansionItem">{this.props.schedule.name}</ td>
                 <td><Button color="primary">View</Button></td>
                 { editModal }

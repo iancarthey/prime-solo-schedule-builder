@@ -8,6 +8,7 @@ function* scheduleSaga(){
     yield takeEvery('FETCH_SCHEDULE', getScheduleSaga);
     yield takeEvery('DELETE_SCHEDULE', deleteScheduleSaga);
     yield takeEvery('VIEW_SCHEDULE', viewScheduleSaga);
+    yield takeEvery('UPDATE_EDIT_SCHEDULE', updateEditScheduleSaga);
 }
 
 //GET request for schedule groups
@@ -95,6 +96,17 @@ function* viewScheduleSaga(action){
         })
     } catch (error){
         console.log('error in VIEW SCHEDULE SAGA: ', error)
+    }
+}
+
+//FUNCTION FOR UPDATING SCHEDULE ITEMS
+function* updateEditScheduleSaga(action){
+    try{
+        //dispatch axios to update order in database
+        yield call(axios.put, `/api/item/?id=${action.payload.newScheduleItem.id}`, action.payload)
+        
+    } catch(error) {
+        console.log('error in UPDATEEDITSCHEDULESAGA: ', error )
     }
 }
 
