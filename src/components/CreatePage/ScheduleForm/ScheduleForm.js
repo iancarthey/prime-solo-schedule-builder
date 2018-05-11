@@ -75,7 +75,7 @@ const mapStateToProps = reduxState => ({
 
     return(
         <div className = "scheduleForm">
-        <TextField id="With-Placeholder" label="Schedule Name" onChange={this.handleChangeFor("name")}/>
+        <TextField label="Schedule Name" onChange={this.handleChangeFor("name")}/>
           <br />
           <br />
           <TextField

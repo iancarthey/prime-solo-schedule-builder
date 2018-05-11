@@ -3,6 +3,8 @@ body {
     background-image: url('https://images.pexels.com/photos/273026/pexels-photo-273026.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 100%;
     width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .instructions h1 {
@@ -16,7 +18,7 @@ body {
     padding: 5px;
     color: whitesmoke;
     text-align: left;
-    width: 1090px;
+    width: 1125px;
     border: solid 1px white;
 }
 
@@ -61,7 +63,7 @@ input[type="submit"] {
   background-color: black;
   border-radius: 0px;
   opacity: .90;
-  width: 1100px;
+  width: 1135px;
 }
 
 ul {
@@ -116,6 +118,7 @@ li a:hover {
     margin: 5px;
     float: left;
     opacity: .90;
+    margin: auto;
 }
 
 .addScheduleButton {
@@ -132,6 +135,7 @@ li a:hover {
     background-color: black;
     opacity: .90;
     text-align: center;
+    margin: auto;
 }
 
 .dragItem {
@@ -154,7 +158,7 @@ h3 {
 .myScheduleTop {
     background-color: black;
     opacity: .90;
-    width: 1100px;
+    width: 1135px;
     border: solid 1px white;
 }
 
@@ -199,7 +203,8 @@ h3 {
 .headerDate {
     color: whitesmoke;
     float: right;
-    padding-top: 15px;
+    padding-top: 5px;
+    margin: 10px;
 }
 
 .createDrag{
@@ -212,3 +217,45 @@ h3 {
     border: solid 2px white;
     border-radius: 12px;
 }
+
+#logo {
+    height: 350px;
+    width: 350px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.loginDiv {
+    text-align: center;
+    background-color: black;
+    opacity: .85;
+    color: whitesmoke;
+    width: 1135px;
+    height: 530px;
+    border: solid 1px white;
+}
+
+#loginButton {
+    padding: 10px;
+    margin: 10px;
+}
+
+.logoHeader{
+    height: 60px;
+    width: 200px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    float: left;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+.lead {
+    height: 30px;
+    padding: 0px;
+    margin: 0px;
+}
+
