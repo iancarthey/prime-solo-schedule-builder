@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 
 //Material UI imports
 // import { withStyles } from 'material-ui/styles';
@@ -52,7 +53,7 @@ const mapStateToProps = reduxState => ({
         newScheduleItems: this.props.items
       }
     })
-    // this.props.history.push('home');
+    this.props.history.push('schedules');
   }
 
   componentDidMount() {
@@ -112,4 +113,6 @@ const mapStateToProps = reduxState => ({
   }
 }
 
-export default connect(mapStateToProps)(ScheduleForm);
+const scheduleFormWithRouter = withRouter(ScheduleForm)
+
+export default connect(mapStateToProps)(scheduleFormWithRouter);

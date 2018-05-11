@@ -13,7 +13,7 @@ body {
 .instructions {
     background-color: black;
     padding: 5px;
-    color: #ece7e7;
+    color: teal;
 }
 
 /* form {
@@ -109,10 +109,14 @@ li a:hover {
     float: left;
 }
 
-/* .addScheduleButton {
-    float: left;
-} */
+.addScheduleButton {
+    padding: 5px;
+    margin: 5px;
+}
 
 .dragNDrop {
     float: left;
+    padding: 5px;
+    margin: 5px;
+    border: solid 2px black;
 }
