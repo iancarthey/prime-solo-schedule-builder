@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 const mapStateToProps = reduxState => ({
   user: reduxState.user
@@ -16,6 +17,7 @@ class NavBar extends Component{
   }
   
   render(){
+    let date = moment().format('l')
     return (
   <div className="navbar">
     <div>
@@ -34,6 +36,9 @@ class NavBar extends Component{
           <Link to="/home" onClick={this.logout}>
             Logout
           </ Link>  
+        </li>
+        <li className="headerDate">
+          Today's Date is {date}
         </li>  
       </ul>
     </div>

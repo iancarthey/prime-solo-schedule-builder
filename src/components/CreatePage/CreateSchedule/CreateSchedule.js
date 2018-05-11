@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //Material UI imports
-import Button from 'material-ui/Button';
-// import AddIcon from '@material-ui/icons/Add';
-// import Typography from 'material-ui/Typography';
+
 
 //Other views imports
 import Nav from '../../../components/Nav/Nav';

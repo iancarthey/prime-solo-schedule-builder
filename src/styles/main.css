@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: grey;
+    background-image: url('https://images.pexels.com/photos/273026/pexels-photo-273026.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 100%;
     width: 100%;
 }
@@ -11,10 +11,15 @@ body {
 }
 
 .instructions {
-    background-color: black;
+    background-color: #009688;
+    opacity: .85;
     padding: 5px;
-    color: teal;
+    color: whitesmoke;
+    text-align: left;
+    width: 1090px;
+    border: solid 1px white;
 }
+
 
 /* form {
     background-color: #dbd5d5;
@@ -51,9 +56,12 @@ input[type="submit"] {
 }
 
 .navbar {
+  border: solid 1px white;
+  /* border-bottom: solid 2px white; */
   background-color: black;
-  width: 100%;
   border-radius: 0px;
+  opacity: .90;
+  width: 1100px;
 }
 
 ul {
@@ -84,6 +92,8 @@ li a:hover {
 
 .scheduleGroupExpansionItem {
     text-align: center;
+    color: whitesmoke;
+    border-bottom: solid 1px white;
 }
 
 .scheduleItemButton {
@@ -94,19 +104,18 @@ li a:hover {
     float: right;
 }
 
-.topLevel {
-    background-color: darkgray;
-}
 
 .scheduleForm {
-    background-color: lightgray;
-    border: solid 2px black;
+    /* background-color: rgb(83, 83, 83); */
+    background-color: black;
+    border: solid 2px white;
     height: 225px;
     width: 250px;
     text-align: center;
     padding: 5px;
     margin: 5px;
     float: left;
+    opacity: .90;
 }
 
 .addScheduleButton {
@@ -118,5 +127,88 @@ li a:hover {
     float: left;
     padding: 5px;
     margin: 5px;
-    border: solid 2px black;
+    border: solid 2px white;
+    /* background-color: rgb(83, 83, 83); */
+    background-color: black;
+    opacity: .90;
+    text-align: center;
+}
+
+.dragItem {
+    border-radius: 12px;
+}
+
+h3 {
+    color: whitesmoke;
+    padding: 5px;
+    margin: 5px;
+}
+
+#welcome {
+    color: whitesmoke;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.myScheduleTop {
+    background-color: black;
+    opacity: .90;
+    width: 1100px;
+    border: solid 1px white;
+}
+
+.expansionGroup {
+    opacity: 1;
+    border: solid 1px #009688;
+}
+
+.viewScheduleDiv {
+    color: whitesmoke;
+    background-color: black;
+    border-radius: 12px;
+    border: solid 1px white;
+    opacity: .75;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+.viewHeader {
+    text-align: center;
+    background-color: #009688;
+    border-radius: 12px;
+}
+
+.editDragNDrop {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 50%;
+    border-radius: 12px;
+    border: solid 2px white;
+}
+
+.editHeader {
+    text-align: left;
+    background-color: #009688;
+    border-radius: 12px;
+    width: 256px;
+}
+
+.headerDate {
+    color: whitesmoke;
+    float: right;
+    padding-top: 15px;
+}
+
+.createDrag{
+    border-radius: 12px;
+    opacity: 1;
+    border: solid 1px white;
+}
+
+.viewDiv {
+    border: solid 2px white;
+    border-radius: 12px;
 }

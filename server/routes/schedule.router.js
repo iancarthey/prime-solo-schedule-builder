@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route for schedules
  */
 router.get('/', (req, res) => {
-    let queryText = `SELECT * FROM schedule;`;
+    let queryText = `SELECT * FROM schedule ORDER BY date DESC;`;
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((error) => {

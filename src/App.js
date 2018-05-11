@@ -6,7 +6,6 @@ import {
   Switch,
 } from 'react-router-dom';
 
-
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
@@ -15,6 +14,7 @@ import CreateSchedule from './components/CreatePage/CreateSchedule/CreateSchedul
 
 
 import './styles/main.css';
+  
 
 const App = () => (
   <div className="topLevel">

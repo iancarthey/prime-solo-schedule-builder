@@ -10,7 +10,6 @@ import ExpansionPanel, {
   } from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Button from 'material-ui/Button';
 
 const mapStateToProps = state => ({
     state

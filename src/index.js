@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
-import Main from './styles/main.css';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 import reducer from './redux/reducers';
 
@@ -22,6 +22,24 @@ if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger);
 }
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+        light: '#757ce8',
+        main: '#009688',
+        dark: '#78909C',
+        contrastText: '#ffff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#fff',
+      },
+    type:'dark',
+  },
+})
+
 const store = createStore(
   reducer,
   preloadedState,
@@ -32,7 +50,9 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MuiThemeProvider theme={theme}>
+      <App />
+    </ MuiThemeProvider>  
   </Provider>,
   document.getElementById('react-root'),
 );

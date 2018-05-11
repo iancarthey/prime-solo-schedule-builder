@@ -33,6 +33,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
+    opacity: .95,
   },
 });
 
@@ -59,16 +60,19 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: 'none',
   padding: grid * 2,
   margin: `0 0 ${grid}px 0`,
+  borderRadius: '12px',
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
+  background: isDragging ? 'black' : 'grey',
+  color: 'white',
+  opacity: 1,
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  background: isDraggingOver ? '#009688' : 'black',
   padding: grid,
   width: 250,
 });
@@ -143,6 +147,7 @@ class DragAndDrop extends Component{
             <div
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
+              className="createDrag"
             >
               {this.props.items.map((item, index) => (
                 <Draggable key={item.id} draggableId={item.name} index={index}>

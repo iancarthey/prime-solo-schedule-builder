@@ -24,7 +24,7 @@ class ViewSchedule extends Component {
 
     render(){
         let scheduleItem = this.props.schedule.map((schedule) => {
-            return (<div>
+            return (<div className="viewScheduleDiv">
                     <p key={schedule.id}>
                      {schedule.name} 
                      <br />

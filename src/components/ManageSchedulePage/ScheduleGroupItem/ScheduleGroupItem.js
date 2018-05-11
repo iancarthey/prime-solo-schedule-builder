@@ -50,6 +50,7 @@ const mapStateToProps = state => ({
       position: 'absolute',
       width: theme.spacing.unit * 50,
       backgroundColor: theme.palette.background.paper,
+      opacity: .95,
       boxShadow: theme.shadows[5],
       padding: theme.spacing.unit * 4,
     },
@@ -103,7 +104,7 @@ class ScheduleGroupItem extends Component {
     render(){
         //format Date to post to Dom
         let scheduleDate = this.props.schedule.date
-        let viewDate = moment(scheduleDate).format('L');
+        let viewDate = moment(scheduleDate).format('l');
         
         //declare modals
         let editModal;
@@ -119,7 +120,7 @@ class ScheduleGroupItem extends Component {
                     onClose={this.handleEditClose}
                 >
                 <div style={getEditModalStyle()} className={classes.paper}>
-                    <h3>{viewDate}- {this.props.schedule.schedule_name}</h3>
+                    <h3 className="editHeader">{viewDate}- {this.props.schedule.schedule_name}</h3>
                     <EditScheduleDragAndDrop />
                 </div>
                 </Modal>
@@ -134,23 +135,23 @@ class ScheduleGroupItem extends Component {
                 onClose={this.handleViewClose}
             >
             <div style={getViewModalStyle()} className={classes.paper}>
-                <h3>{viewDate}- {this.props.schedule.schedule_name}</h3>
-                <ViewSchedule />
+                <h3 className="viewHeader">{viewDate}- {this.props.schedule.schedule_name}</h3>
+                <div className="viewDiv">
+                    <ViewSchedule />
+                </ div>
             </div>
             </Modal>
         )
 
         return(
             <tr>
-                <td>{viewDate}- </td>
-                <br />
+                <td className="scheduleGroupExpansionItem">{viewDate}- </td>
                 <td className="scheduleGroupExpansionItem">{this.props.schedule.schedule_name}</ td>
-                <br />
-                <td><Button color="primary" onClick={() => this.handleViewOpen(this.props.schedule)}>View</Button></td>
+                <td className="scheduleGroupExpansionItem"><Button color="primary" onClick={() => this.handleViewOpen(this.props.schedule)}>View</Button></td>
                 {viewModal}
-                <td><IconButton onClick={() => this.handleEditOpen(this.props.schedule)}><Edit /></IconButton></td>
+                <td className="scheduleGroupExpansionItem"><IconButton onClick={() => this.handleEditOpen(this.props.schedule)}><Edit /></IconButton></td>
                 { editModal }
-                <td><IconButton onClick={() => this.handleDeleteSchedule(this.props.schedule)}><Delete /></IconButton></td>
+                <td className="scheduleGroupExpansionItem"><IconButton onClick={() => this.handleDeleteSchedule(this.props.schedule)}><Delete /></IconButton></td>
             </tr>    
         )
     }

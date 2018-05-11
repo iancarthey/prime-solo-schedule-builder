@@ -38,6 +38,7 @@ const styles = theme => ({
     position: 'absolute',
     width: theme.spacing.unit * 50,
     backgroundColor: theme.palette.background.paper,
+    opacity: .95,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
   },
@@ -75,13 +76,14 @@ class MySchedules extends Component {
 
   render() {
     let content;
+
     const { classes } = this.props;
     let scheduleGroup = this.props.scheduleGroup.scheduleGroupReducer.map((group) => {
       return <ScheduleGroupExpansion key={group.id} group={group} />
     })
 
     let scheduleGroupModal = (
-      <div>
+      <div className="topMySchedule">
         <Button className="addGroupButton" onClick={this.handleOpen} color="primary" variant="raised" size="small">
           Add Schedule Group
         </Button>
@@ -102,7 +104,7 @@ class MySchedules extends Component {
 
     if (this.props.user.userName) {
       content = (
-        <div>
+        <div class="myScheduleTop">
           <h1
             id="welcome"
           >

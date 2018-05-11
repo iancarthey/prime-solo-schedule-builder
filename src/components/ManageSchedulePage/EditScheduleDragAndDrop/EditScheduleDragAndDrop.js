@@ -31,16 +31,18 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: 'none',
   padding: grid * 2,
   margin: `0 0 ${grid}px 0`,
+  borderRadius: '12px',
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
+  background: isDragging ? 'black' : 'grey',
+  color: 'white',
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  background: isDraggingOver ? '#009688' : 'black',
   padding: grid,
   width: 250,
 });
@@ -95,9 +97,10 @@ componentDidUpdate() {
         <div
           ref={provided.innerRef}
           style={getListStyle(snapshot.isDraggingOver)}
+          className="editDragNDrop"
         >
           {this.props.items.map((item, index) => (
-            <Draggable key={item.id} draggableId={item.name} index={index}>
+            <Draggable key={item.id} draggableId={item.name} index={index} >
               {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
@@ -118,7 +121,7 @@ componentDidUpdate() {
       )}
     </Droppable>
   </DragDropContext>
-  <Button onClick={() => this.handleEdit()}>Finalize Edit</Button>
+  <Button color="primary" variant="raised" onClick={() => this.handleEdit()}>Finalize Edit</Button>
   </div>
     )
   }
