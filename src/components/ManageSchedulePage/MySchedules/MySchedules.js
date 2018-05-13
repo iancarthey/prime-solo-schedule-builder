@@ -104,7 +104,7 @@ class MySchedules extends Component {
 
     if (this.props.user.userName) {
       content = (
-        <div class="myScheduleTop">
+        <div className="myScheduleTop">
           <h1
             id="welcome"
           >

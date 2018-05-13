@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 //Material UI imports
 import { withStyles } from 'material-ui/styles';
@@ -103,7 +104,11 @@ class ScheduleGroupItem extends Component {
 
     //function to go to student view
     handleStudentView = (schedule) => {
-        
+        this.props.history.push('student');
+        this.props.dispatch({
+            type: 'VIEW_SCHEDULE',
+            payload: schedule
+        })
     }
 
     render(){
@@ -154,7 +159,7 @@ class ScheduleGroupItem extends Component {
                  { editModal }
                 <td className="scheduleGroupExpansionItem">{viewDate}- </td>
                 <td className="scheduleGroupExpansionItem">{this.props.schedule.schedule_name}</ td>
-                <td className="scheduleGroupExpansionItem"><Button color="primary" onClick={() => this.handleViewOpen(this.props.schedule)}>View</Button></td>
+                <td className="scheduleGroupExpansionItem"><Button color="primary" onClick={() => this.handleViewOpen(this.props.schedule)}>Quick View</Button></td>
                 <td className="scheduleGroupExpansionItem"><Button color="primary" onClick={() => this.handleStudentView(this.props.schedule)}>Student View</Button></td>
                 <td className="scheduleGroupExpansionItem"><IconButton onClick={() => this.handleEditOpen(this.props.schedule)}><Edit /></IconButton></td>
                 <td className="scheduleGroupExpansionItem"><IconButton onClick={() => this.handleDeleteSchedule(this.props.schedule)}><Delete /></IconButton></td>
@@ -164,5 +169,6 @@ class ScheduleGroupItem extends Component {
 }
 
 let scheduleGroupItemStyle = withStyles(styles)(ScheduleGroupItem)
+let scheduleGroupItemWithRouter = withRouter(scheduleGroupItemStyle)
 
-export default connect(mapStateToProps)(scheduleGroupItemStyle);
+export default connect(mapStateToProps)(scheduleGroupItemWithRouter);
