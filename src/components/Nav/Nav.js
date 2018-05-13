@@ -33,6 +33,11 @@ class NavBar extends Component{
           </Link>
         </li>
         <li>
+          <Link to="/about">
+            About This Project
+          </Link>
+        </li>
+        <li>
           <Link to="/home" onClick={this.logout}>
             Logout
           </ Link>  

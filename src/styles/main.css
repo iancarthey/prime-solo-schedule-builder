@@ -259,3 +259,16 @@ h3 {
     margin: 0px;
 }
 
+.aboutProjectDiv {
+    background-color: black;
+    color: whitesmoke;
+    opacity: .85;
+    border: solid 1px white;
+    width: 1135px;
+    height: 400px;
+}
+
+.techUsed {
+    padding: 5px;
+    margin: 5px;
+}

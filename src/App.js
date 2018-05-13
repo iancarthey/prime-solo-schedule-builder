@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import MySchedules from './components/ManageSchedulePage/MySchedules/MySchedules';
 import CreateSchedule from './components/CreatePage/CreateSchedule/CreateSchedule';
+import AboutThisProject from './components/AboutThisProjectPage/AboutThisProject/AboutThisProject';
 
 
 import './styles/main.css';
@@ -37,6 +38,10 @@ const App = () => (
         <Route
           path="/create"
           component={CreateSchedule}
+        />
+        <Route
+          path="/about"
+          component={AboutThisProject}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
