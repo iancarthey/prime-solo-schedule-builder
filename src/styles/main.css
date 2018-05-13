@@ -157,7 +157,7 @@ h3 {
 
 .myScheduleTop {
     background-color: black;
-    opacity: .90;
+    opacity: .98;
     width: 1135px;
     border: solid 1px white;
 }
@@ -228,7 +228,7 @@ h3 {
 .loginDiv {
     text-align: center;
     background-color: black;
-    opacity: .85;
+    opacity: .90;
     color: whitesmoke;
     width: 1135px;
     height: 530px;
@@ -262,7 +262,7 @@ h3 {
 .aboutProjectDiv {
     background-color: black;
     color: whitesmoke;
-    opacity: .85;
+    opacity: .90;
     border: solid 1px white;
     width: 1135px;
     height: 400px;

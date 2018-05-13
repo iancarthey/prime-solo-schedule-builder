@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
   const styles = theme => ({
     root: {
       width: '100%',
+
     },
     heading: {
       fontSize: theme.typography.pxToRem(20),
@@ -41,7 +42,7 @@ class ScheduleGroupExpansion extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-            <ExpansionPanel className="expansionGroup">
+            <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography className={classes.heading}>{this.props.group.name}</Typography>
                 </ExpansionPanelSummary>
