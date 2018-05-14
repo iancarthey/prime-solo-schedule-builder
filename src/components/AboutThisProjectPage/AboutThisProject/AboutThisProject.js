@@ -15,7 +15,7 @@ class AboutThisProject extends Component{
                     </p>
                     <br />
                     <p className="techUsed"> 
-                        Schedules From Glen was built using the following technology: 
+                        Schedules From Glen was built using the following tech: 
                     </p>
                     <ul className="techUsed">
                         <li>Node</li>
