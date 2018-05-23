@@ -25,11 +25,11 @@ Now that the server is running, open a new terminal tab with `cmd + t` and start
 npm run client
 ```
 
-![Login page](components/image/login)
+![Login page](/login.png)
 
-![Manage Schedule page](components/image/manage)
+![Manage Schedule page](/manage.png)
 
-![Schedule Create page](components/image/create)
+![Schedule Create page](/create.png)
 
 
 - [x] Login
