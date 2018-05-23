@@ -25,15 +25,12 @@ Now that the server is running, open a new terminal tab with `cmd + t` and start
 npm run client
 ```
 
-![login page](components/image/login)
+![Login page](components/image/login)
 
-## Documentation
+![Manage Schedule page](components/image/manage)
 
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
+![Schedule Create page](components/image/create)
 
-### Completed Features
-
-High level list of items completed.
 
 - [x] Feature a
 - [x] Feature b
