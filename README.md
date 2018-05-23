@@ -32,24 +32,28 @@ npm run client
 ![Schedule Create page](components/image/create)
 
 
-- [x] Feature a
-- [x] Feature b
+- [x] Login
+- [x] View Schedule
+- [x] Delete schedule
+- [x] Update Schedule
+- [x] Nav Bar
+- [x] Drag and Drop
+- [x] Create Schedule
+- [x] Create Schedule Item
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
+- [ ] Authorization
+- [ ] Deploy to Heroku
+- [ ] More Styling
 
-- [ ] Feature c
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
+* Ian Carthey
 
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Thank you to prime for the base passport set up
+* Thank you to React-Beautiful-DnD library
