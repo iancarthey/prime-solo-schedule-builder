@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   const styles = theme => ({
     root: {
       width: '100%',
-
+      border: '1px solid #009688'
     },
     heading: {
       fontSize: theme.typography.pxToRem(20),
